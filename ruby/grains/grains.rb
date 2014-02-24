@@ -1,11 +1,13 @@
 class Grains
+  attr_reader :number
 
   def square(number)
-    2**(number-1)
+    @number = number
+    2 ** (number - 1)
   end
 
   def total
-    (1..64).inject { |total, number| total + square(number) }
+    square(65) - 1
   end
 
 end
