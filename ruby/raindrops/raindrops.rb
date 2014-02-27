@@ -28,6 +28,13 @@ class Raindrops
     # end
   end
 
+  def next_prime_factor(number)
+    if number % 3 == 0
+      
+
+
+  end
+
   def self.divisible_by_seven?(number)
     if number % 7 == 0
       "Plong"

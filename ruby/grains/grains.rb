@@ -1,8 +1,6 @@
 class Grains
-  attr_reader :number
 
   def square(number)
-    @number = number
     2 ** (number - 1)
   end
 
