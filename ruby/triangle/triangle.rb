@@ -12,9 +12,9 @@ class Triangle
   def kind
     if invalid_side? || violates_inequality?
       raise TriangleError
-    elsif [side_one, side_two, side_three].uniq.count == 1  
+    elsif equilateral? 
       :equilateral
-    elsif [side_one, side_two, side_three].uniq.count == 2
+    elsif isoscoles? 
       :isosceles
     else
       :scalene
@@ -23,14 +23,21 @@ class Triangle
 
 private
 
+	def equilateral?
+		[side_one, side_two, side_three].uniq.count == 1  		
+	end
+
+	def isoscoles?
+		[side_one, side_two, side_three].uniq.count == 2
+	end
+
   def invalid_side?
     [side_one, side_two, side_three].any? { |side| side <= 0} 
   end
 
   def violates_inequality?
-    side_one + side_two <= side_three ||
-    side_one + side_three <= side_two ||
-    side_two + side_three <= side_one
+		sorted_triangle = [side_one, side_two, side_three].sort
+		sorted_triangle[0] + sorted_triangle[1] <= sorted_triangle[2]
   end
 
 end
