@@ -2,11 +2,11 @@ var Meetup = function(month, year) {
   this.findTeenthday = function(day) {
     for (var i= 13; i < 20; i++) {
       var date = new Date(year, month, i);
-      if (date.getUTCDay() == day) {
+      if (date.getUTCDay() === day) {
        return date;
       }
     }
-} 
+	} 
   
   this.monteenth = function() {
     return this.findTeenthday(1);
