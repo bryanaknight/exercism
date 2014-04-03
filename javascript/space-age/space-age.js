@@ -13,42 +13,24 @@ function SpaceAge(seconds) {
       venus : 0.61519726
     };
 
+  var PLANETS = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+
+  for (var i = 0; i < PLANETS.length; i++) {
+    var planet = PLANETS[i];
+    SpaceAge.prototype["on" + planet.toUpperCase()] = buildPlanetFunction(planet);
+  };
+
   this.YearsInSpace = function(planet){
     var time = this.earthYears / this.earthToOtherPlanets[planet];
     return parseFloat(time.toFixed(2))
   };
 
-  this.onEarth = function() {
-    return this.YearsInSpace('earth');
+  function buildPlanetFunction(planet) {
+    return function() {
+      return this.YearsInSpace(planet);
+    };
   };
 
-  this.onMercury = function() {
-    return this.YearsInSpace('mercury');
-  }
-
-  this.onJupiter = function() {
-    return this.YearsInSpace('jupiter');
-  };
-
-  this.onSaturn = function() {
-    return this.YearsInSpace('saturn');
-  };
-
-  this.onNeptune = function() {
-    return this.YearsInSpace('neptune');
-  };
-
-  this.onUranus = function() {
-    return this.YearsInSpace('uranus');
-  };
-
-  this.onMars = function() {
-    return this.YearsInSpace('mars');
-  };
-
-  this.onVenus = function() {
-    return this.YearsInSpace('venus');
-  };
 
 };
 
