@@ -7,6 +7,7 @@ class Series
 
 	def slices(slice_by)
 		@slice_by = slice_by
+		check_validity
 		if uneven?
 			slice
 		else
@@ -15,15 +16,19 @@ class Series
 	end
 
 	def uneven?
-		slice_by > 1 && !sequence.length.even?
+		slice_by > 1 
 	end
 
 	def slice
-		(sequence.length - 1).times.collect do
+		(sequence.length - (slice_by - 1)).times.collect do
 			slice = sequence.take(slice_by)
 			sequence.shift
 			slice
 		end
+	end
+
+	def check_validity 
+		raise ArgumentError.new("Invalid number of slices") if sequence.length < slice_by
 	end
 	
 
