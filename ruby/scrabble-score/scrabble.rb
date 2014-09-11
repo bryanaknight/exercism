@@ -1,18 +1,18 @@
 class Scrabble
-  attr_reader :word
+  attr_reader :letters
 
   def initialize(word)
-    @word = word.to_s.strip.upcase
+    @letters = word.to_s.strip.upcase.chars
   end
 
   def score
-    word.split("").inject(0) do 
+    letters.inject(0) do 
       |sum, letter| sum + points[letter]
     end
   end
 
   def self.score(word)
-    Scrabble.new(word).score
+    new(word).score
   end
 
   def points
@@ -26,6 +26,5 @@ class Scrabble
       "Y"=>4, "Z"=>10, "" => 0
     }
   end
-
 
 end
